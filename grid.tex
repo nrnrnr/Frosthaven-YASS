@@ -53,7 +53,45 @@
 %%%%    
 %%%%    \clearpage
 
+\newcommand\xscale[2][center]{% anchor pos
+  \foreach \x in {0,200,...,3600} {
+    \node[anchor=#1] at (\x,#2) {\x};
+  }
+}
+
+\newcommand\yscale[2][east]{%
+  \foreach \y in {0,200,...,2800} {
+    \node[anchor=#1] at (#2,\y) {\y};
+  }
+}
+  
+
+\newcommand\loadgrid[1]{%
+  \node[anchor=south west,inner sep=0] (image) at (0,0)
+       {\includegraphics[scale=0.2,viewport=0 0 3748 2860]{#1}};
+  \draw[step=100,gray] (0,0) grid (3700,2900);
+  \draw[step=20,lightgray,very thin] (0,0) grid (3700,2900);
+  \draw[step=200,darkgray] (0,0) grid (3700,2900);
+}
+
 \begin{center}
+
+\begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
+\loadgrid{terrain-000.jpg}
+\xscale[north]{2300}
+\yscale[east]{-5}
+\end{tikzpicture}
+
+\begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
+\loadgrid{terrain-001.jpg}
+\xscale[north]{-5}
+\yscale[east]{-5}
+\yscale[center]{3650}
+\xscale{1550}
+\xscale{2150}
+\xscale{900}
+\end{tikzpicture}
+
 
 \begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
 
@@ -105,10 +143,11 @@
 \node[anchor=south,inner sep=0] (image) at (0,0)
      {\includegraphics*[scale=0.1,viewport=1230 1640 1660 2100]{terrain-001.jpg}};
 
-
 \node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
 \end{tikzpicture}
 \end{center}
+
+
 
 
 \clearpage

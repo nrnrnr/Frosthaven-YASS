@@ -16,6 +16,15 @@
 \def\tilejpg{terrain-001.jpg}
 \def\tilefont{\Large}
 
+\newcommand\ttitle[1]{%
+ \begin{minipage}[t]{6em}
+ \tolerance=800
+ \centering
+ \tilefont
+ #1%
+ \end{minipage}%
+}
+
 \newcommand\deftile[5][0.1]{% [scale]\ladder{4}{Ladders}{coordinates}
   %                          #1     #2   #3    #4         #5
   \newsavebox#2%
@@ -23,10 +32,20 @@
   \begin{tikzpicture}[x=0.2pt,y=0.2pt]
   \node[anchor=south,inner sep=0] (image) at (0,0)
        {\includegraphics*[scale=#1,viewport=#5]{\tilejpg}};
-  \node[anchor=north] (0, -1000) {\tilefont #3 #4};
+  \node[anchor=north] (0, -1000) {\ttitle{#3 #4}};
   \end{tikzpicture}
   \end{lrbox}
 }
+
+\def\tilejpg{terrain-000.jpg}
+
+\deftile\poisontrap    6 {Poison Gas Traps?} {80 2350 550 2800}
+\deftile\spiketrap     6 {Spike Traps?} {620 2330 1100 2750}
+\deftile\beartrap      6 {Bear Traps?} {1660 2280 2100 2800}
+
+
+\def\tilejpg{terrain-001.jpg}
+
 
 \deftile\icyspikes   {10} {Icy Spikes?} {150 2180 620 2650}
 \deftile\rubble       {6} {Rubble}      {650 2180 1180 2650}
@@ -48,18 +67,20 @@
 \deftile\snowcor     {10} {Snow Corridors} {1170 930 1680 1420}
 \deftile\snowdoor     {6} {Snow Doors}     {1680 980 2180 1470}
 
-\deftile\crate         4  {Crates}   {600 5 480 450}
+\deftile\crate         4  {Crates}   {160 5 480 450}
 \deftile\metalcab      4  {Metal Cabinets} {570 30 1010 380}
-\deftile\barrels       2  {Barrels}  {1100 0 1450 410}
-\deftile\altar         6  {Altars}   {1580 1 1830 400}
-\deftile\post          1  {Post?}    {1970 0 2240 440}
+\deftile\barrels       2  {Barrels}  {1100 0 1520 410}
+\deftile\altar         6  {Altars}   {1580 1 1900 400}
+\deftile\post          1  {Post?}    {1970 0 2280 440}
 \deftile\metaldoor     4  {Metal Doors}   { 2260 0 2710 320}
 \deftile\dundoor       5  {Dungeon Doors} { 2790 5 3220 380}
 
 \renewcommand\t{\usebox}
 
-
-\t\icyspikes
+\t\poisontrap
+\ \t\spiketrap
+\ \t\beartrap
+\ \t\icyspikes
 \ \t\rubble   
 \ \t\stalagmites
 \ \t\greenone   
