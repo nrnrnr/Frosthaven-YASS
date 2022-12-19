@@ -72,11 +72,19 @@
 }
 
 \foreach \x in {0,200,...,3600} {
+  \node[anchor=center] at (\x,2150) {\x};
+}
+
+\foreach \x in {0,200,...,3600} {
   \node[anchor=south] at (\x,2700) {\x};
 }
 
 \foreach \y in {0,200,...,2600} {
   \node[anchor=east] at (-0.1 cm,\y) {\y};
+}
+
+\foreach \y in {0,200,...,2600} {
+  \node[anchor=west] at (3600,\y) {\y};
 }
 
 \end{tikzpicture}
@@ -90,6 +98,41 @@
 
 \node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
 \end{tikzpicture}
+%
+%
+%
+\begin{tikzpicture}[x=0.2pt,y=0.2pt]
+\node[anchor=south,inner sep=0] (image) at (0,0)
+     {\includegraphics*[scale=0.1,viewport=1230 1640 1660 2100]{terrain-001.jpg}};
+
+
+\node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
+\end{tikzpicture}
 \end{center}
+
+
+\clearpage
+
+\def\tilejpg{terrain-001.jpg}
+\def\tilefont{\LARGE}
+
+\newcommand\deftile[5][0.1]{% [scale]\ladder{4}{Ladders}{coordinates}
+  %                          #1     #2   #3    #4         #5
+  \newsavebox#2%
+  \begin{lrbox}{#2}
+  \begin{tikzpicture}[x=0.2pt,y=0.2pt]
+  \node[anchor=south,inner sep=0] (image) at (0,0)
+       {\includegraphics*[scale=#1,viewport=#5]{\tilejpg}};
+  \node[anchor=north] (0, -1000) {\tilefont #3 #4};
+  \end{tikzpicture}
+  \end{lrbox}
+}
+
+\deftile\stalagmites {99} {Stalagmites} {1200 2200 1720 2660}
+
+Hello
+\usebox{\stalagmites}
+there
+
 
 \end{document}
