@@ -1,0 +1,90 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\newfontfamily\pirata{Pirata One}
+\setmainfont{Pirata One}
+\begin{document}
+
+\parindent=0pt
+
+
+\thispagestyle{empty}
+
+\def\tilejpg{terrain-001.jpg}
+\def\tilefont{\Large}
+
+\newcommand\deftile[5][0.1]{% [scale]\ladder{4}{Ladders}{coordinates}
+  %                          #1     #2   #3    #4         #5
+  \newsavebox#2%
+  \begin{lrbox}{#2}
+  \begin{tikzpicture}[x=0.2pt,y=0.2pt]
+  \node[anchor=south,inner sep=0] (image) at (0,0)
+       {\includegraphics*[scale=#1,viewport=#5]{\tilejpg}};
+  \node[anchor=north] (0, -1000) {\tilefont #3 #4};
+  \end{tikzpicture}
+  \end{lrbox}
+}
+
+\deftile\icyspikes   {10} {Icy Spikes?} {150 2180 620 2650}
+\deftile\rubble       {6} {Rubble}      {650 2180 1180 2650}
+\deftile\stalagmites  {6} {Stalagmites} {1200 2200 1720 2660}
+\deftile\greenone    {10} {Green thing 1} {1720 2170 2180 2650}
+\deftile\icepiller     9  {Ice Pillars} {2215 2220 2540 2680}
+\deftile\nest          4  {Nests?}      {2600 2230 3060 2700}
+\deftile\snowrock      5  {Snow rocks}  {3140 2280 3550 2700}
+
+\deftile\goldenorb     1  {Golden orb?} {100 1580 520 2020}
+\deftile\debris        5  {Debris} {620 1600 1120 2080}
+\deftile\ladder        4  {Ladder?} {1230 1650 1620 2060}
+\deftile\snowdrift     6  {Snow Drifts} {1740 1520 2150 2000}
+\deftile\lavapit       6  {Lava Pits?}  {2200 1640 2650 2100}
+\deftile\pressureplate 4  {Pressure Plates?} {2685 1640 3185 2100}
+
+\deftile\cavedoor      4  {Cave Doors?} {70 1010 620 1520}
+\deftile\dungcor       3  {Dungeon Corridors?} {640 1030 1160 1530}
+\deftile\snowcor     {10} {Snow Corridors} {1170 930 1680 1420}
+\deftile\snowdoor     {6} {Snow Doors}     {1680 980 2180 1470}
+
+\deftile\crate         4  {Crates}   {600 5 480 450}
+\deftile\metalcab      4  {Metal Cabinets} {570 30 1010 380}
+\deftile\barrels       2  {Barrels}  {1100 0 1450 410}
+\deftile\altar         6  {Altars}   {1580 1 1830 400}
+\deftile\post          1  {Post?}    {1970 0 2240 440}
+\deftile\metaldoor     4  {Metal Doors}   { 2260 0 2710 320}
+\deftile\dundoor       5  {Dungeon Doors} { 2790 5 3220 380}
+
+\renewcommand\t{\usebox}
+
+
+\t\icyspikes
+\ \t\rubble   
+\ \t\stalagmites
+\ \t\greenone   
+\ \t\icepiller  
+\ \t\nest       
+\ \t\snowrock   
+\ \t\goldenorb     
+\ \t\debris        
+\ \t\ladder        
+\ \t\snowdrift     
+\ \t\lavapit       
+\ \t\pressureplate 
+\ \t\cavedoor
+\ \t\dungcor 
+\ \t\snowcor 
+\ \t\snowdoor
+\ \t\crate    
+\ \t\metalcab 
+\ \t\barrels  
+\ \t\altar    
+\ \t\post     
+\ \t\metaldoor
+\ \t\dundoor  
+
+
+
+
+\end{document}
