@@ -1,5 +1,6 @@
 \documentclass{article}
 \pagestyle{empty}
+\usepackage{suffix}
 \usepackage{calc}
 \usepackage[margin=0.5cm,landscape]{geometry}
 \usepackage{tikz}
@@ -8,29 +9,42 @@
 \usepackage{fp}
 \newfontfamily\pirata{Germania One}
 \setmainfont{Germania One}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,positioning}
 \begin{document}
 
 \parindent=0pt
+
+\newfontfamily\tower{High Tower Text}
 
 
 \thispagestyle{empty}
 
 \def\tilejpg{terrain-001.jpg}
-\def\tilefont{\Large}
+\def\tilefont{\large}
 
 \newcommand\ttitle[2]{%
- \begin{minipage}[t]{6em}
+ \begin{minipage}[t]{10em}
  \tolerance=800
  \centering
  \tilefont
+ \raisebox{0pt}{\tower#1} #2%
+ \end{minipage}%
+}
+\newcommand\narrowtitle[2]{%
+ \begin{minipage}[t]{4em}
+ \tolerance=800
+ \centering
+ \tilefont
+ \raisebox{0pt}{\tower#1}
  #2%
  \end{minipage}%
 }
 
+\newcommand\narrow[1]{\hbox to 4em{\hss#1\hss}}
+
 \FPset\scalefactor{0.75}
 
-\FPmul\normalscale\scalefactor{0.1}
+\FPmul\normalscale\scalefactor{0.095}
 \FPmul\bigscale\scalefactor{0.06666}
 
 \input{tiledefs}
@@ -60,7 +74,7 @@
 \renewcommand\top{5}
 \renewcommand\bot{2}
 
-\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=20mm]
+\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
 %\draw [divider] (0.5,0.5) rectangle (6.5,6.5);
 \foreach \x in {1.5,2.5,...,4.5} {
   \draw [divider] (\x,0.5) -- (\x,6.5);
@@ -79,69 +93,86 @@
 \above(6,3);
 \above(5.5,3);
 
-\node at (3.5,3) {{\t\poisontrap}};
-\node at (3,1.5) {{\t\beartrap}};
 
-\node (stalagmites) at (2,3.5) {{\t\stalagmites}};
+\node (large-snow) at (1,\top) {{\t\lgsnow}};
+\node [above=-2mm of large-snow] {{\t\largewater}};
+\node [below=-2mm of large-snow] {{\t\lgcorrE}};
 
-\node (rubble) at (2,5.5) {{\t\rubble}};
-\node [above of=rubble] {{\t\spiketrap}};
+\node (lcb) at (1,\bot) {{\t\lgcorrB}};
+\node [above=-2mm of lcb] {{\t\lgcorrA}};
+\node [below=-2mm of lcb] {{\t\lgcorrD}};
+
+
+
+\node (rubble) at (2,\hi) {{\t\rubble}};
+\node [above=-3mm of rubble] {{\t\spiketrap}};
+\node [below=-2mm of rubble] {{\t\cavedoor}};
+
+
+\node (2mid) at (2,\mid) {{\t\stalagmites}};
+
+\node [above=-2.5mm of 2mid] {{\t\lavapit}};
+\node [below=-2.5mm of 2mid] {{\t\snowdoor}};
+
+\node (2lo) at (2, \lo) {};
+\node [above=of 2lo] {{\t\snowcor}};
+\node [below=of 2lo] {{\t\snowdrift}};
+
+
+\node (3hu) at (3,6) {};
+\node [left=of 3hu] {{\t\dundoor}};
+\node [right=of 3hu] {{\t\pressureplate}};
+
+\node (3hl) at (3,5) {};
+\node [anchor=east,left=of 3hl] {\narrow{\t\metaldoor}};
+\node [anchor=west,right=of 3hl] {{\narrow{\t\nest}}};
+
+
+
+\node (3lo) at (3,\lo) {};
+\node [above=of 3lo] {{\t\beartrap}};
+\node [below=of 3lo] {{\t\icepillar}};
+
+\node (poison) at (3,\mid) {{\t\poisontrap}};
+\node [above=-2mm of poison] {{\t\snowrock}};
+\node [below=-3mm of poison] {{\t\water}};
+
+\node (bookshelf) at (4,\bot) {{\t\bookshelf}};
+\node [above=of bookshelf] {{\t\console}};
+\node [below=of bookshelf] {{\t\largedebris}};
+
+\node (4top) at (4,\top) {};
+\node (debris) [above=-2mm of 4top] {{\t\debris}};
+\node [above=of debris] {{\t\barricade}};
+\node (sarco) [below=-1mm of 4top] {{\t\sarcophagus}};
+\node [below=of sarco] {{\t\supplyshelf}};
 
 \node at (5,1) {{\t\icyspikes}};
-
-
-\node at (3,\mid) {{\t\water}};
-\node at (3,\lo) {{\t\icepiller}};
-\node at (3,5) {{\t\nest}};
-\node at (3,\mid) {{\t\snowrock}};
-
-\node at (5,4) {{\t\goldenorb}};
-\node at (4,\top) {{\t\debris}};
-\node at (5,6) {{\t\ladder}};
-\node at (2,\lo) {{\t\snowdrift}};
-\node at (2,\mid) {{\t\lavapit}};
-\node at (3,6) {{\t\pressureplate}};
-
-\node at (2,\hi) {{\t\cavedoor}};
-\node at (5,2) {{\t\dungcor}};
-\node at (2,\lo) {{\t\snowcor}};
-\node at (2,\mid) {{\t\snowdoor}};
-
-\node at (5,5) {{\t\crate}};
-\node at (5,5) {{\t\metalcab}};
-\node at (5,5) {{\t\barrels}};
-\node at (5,4) {{\t\altar}};
-\node at (5,4) {{\t\post}};
-\node at (3,5) {{\t\metaldoor}};
-\node at (3,6) {{\t\dundoor}};
-
-\node at (4,\bot) {{\t\console}};
-\node at (6,\top) {{\t\largerocks}};
-\node at (4,\bot) {{\t\bookshelf}};
-
-\node at (4,\top) {{\t\sarcophagus}};
-\node at (5.5,1) {{\t\conduit}};
-\node at (6,\top) {{\t\logtile}};
-
-\node at (6,\top) {{\t\bblob}};
-\node at (4,\bot) {{\t\largedebris}};
-
-\node at (4,\top) {{\t\barricade}};
-\node at (4,\top) {{\t\supplyshelf}};
-
-\node at (1,\top) {{\t\largewater}};
-
-\node at (1,\bot) {{\t\lgcorrA}};
-\node at (1,\bot) {{\t\lgcorrB}};
-\node at (1,\top) {{\t\lgsnow}};
-\node at (1,\bot) {{\t\lgcorrD}};
-
-\node at (1,\top) {{\t\lgcorrE}};
 \node at (5,2) {{\t\corrB}};
+\node at (5.5,2.5) {{\t\hugewater}};
+\node at (5,3) {{\t\dungcor}};
 
+\node (golden) at (5,4) {{\t\goldenorb}};
+\node [left=-5mm of golden] {{\t\altar}};
+\node [right=-5mm of golden] {{\t\post}};
+
+\node (crate) at (5,5) {{\t\crate}};
+\node [left=-5mm of crate]  {{\t\barrels}};
+\node [right=-5mm of crate] {{\t\metalcab}};
+
+\node (5hu) at (5,6) {};
+\node [left=-2mm of 5hu] {{\t\ladder}};
+\node [right=-2mm of 5hu] {5 Treasure};
+
+
+\node at (6,1) {{\t\conduit}};
+\node at (6,2.9) {{\t\lgtree}};
 \node at (6,2) {\t\lgice};
-\node at (5,2) {{\t\hugewater}};
-\node at (6,1) {{\t\lgree}};
+
+
+\node (bigrocks) at (6,\top) {{\t\largerocks}};
+\node [above=of bigrocks] {{\t\bblob}};
+\node [below=of bigrocks] {{\t\logtile}};
 
 \end{tikzpicture}
 
