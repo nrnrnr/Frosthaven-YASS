@@ -31,13 +31,17 @@
  \end{minipage}%
 }
 \newcommand\narrowtitle[2]{%
- \begin{minipage}[t]{4em}
+ \mbox{%
+ \hspace*{-0.5em}%
+ \begin{minipage}[t]{5em}
  \tolerance=800
  \centering
  \tilefont
  \raisebox{0pt}{\tower#1}
  #2%
  \end{minipage}%
+ \hspace*{-0.5em}%
+ }
 }
 
 \newcommand\narrow[1]{\hbox to 4em{\hss#1\hss}}
@@ -163,7 +167,7 @@
 
 \node (5hu) at (5,6) {};
 \node [left=-2mm of 5hu] {{\t\ladder}};
-\node [right=-2mm of 5hu] {5 Treasure};
+\node [right=-2mm of 5hu] {\t\treasure};
 
 
 \node at (6,1) {{\t\conduit}};

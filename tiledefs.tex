@@ -10,8 +10,8 @@
   \end{tikzpicture}
   \end{lrbox}
 }
-\WithSuffix\newcommand\deftile*[4]{%
-  \begingroup\let\ttitle=\narrowtitle\deftile{#1}{#2}{#3}{#4}\endgroup}
+\WithSuffix\newcommand\deftile*[5][\normalscale]{%
+  \begingroup\let\ttitle=\narrowtitle\deftile[#1]{#2}{#3}{#4}{#5}\endgroup}
 
 \def\tilejpg{terrain-000.jpg}
 
@@ -83,3 +83,7 @@
 \deftile[\bigscale]\lgice         {} {Large Ice Crystal} { 180 1900 1060 2750}
 \deftile[\bigscale]\hugewater     {} {Huge Water} {250 180 1160 1030}
 \deftile[\bigscale]\lgtree         3 {Snow-Covered Spruce Tree{\qm}} { 2680 100 3480 900}
+
+\def\tilejpg{treasure-000.jpg}
+
+\deftile*[\normalscale,angle=5]\treasure 5 {Treasure Chest} {1780 1220 2260 1500}
