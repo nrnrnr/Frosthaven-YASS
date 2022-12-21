@@ -3,11 +3,13 @@
 \usepackage{calc}
 \usepackage[margin=1.5cm,right=2cm]{geometry}
 \usepackage{tikz}
+\usepackage{suffix}
 \usepackage{graphicx}
 \usepackage{fontspec}
 \usepackage{fp}
 \newfontfamily\pirata{Germania One}
 \setmainfont{Germania One}
+\newfontfamily\tower{High Tower Text}
 \begin{document}
 
 \parindent=0pt
@@ -18,14 +20,31 @@
 \def\tilejpg{terrain-001.jpg}
 \def\tilefont{\Large}
 
+\newcommand\qm{}
+
 \newcommand\ttitle[2]{%
  \begin{minipage}[t]{6em}
  \tolerance=800
  \centering
  \tilefont
+ {\tower#1}
  #2%
  \end{minipage}%
 }
+\newcommand\narrowtitle[2]{%
+ \mbox{%
+ \hspace*{-0.5em}%
+ \begin{minipage}[t]{5em}
+ \tolerance=800
+ \centering
+ \tilefont
+ \raisebox{0pt}{\tower#1}
+ #2%
+ \end{minipage}%
+ \hspace*{-0.5em}%
+ }
+}
+
 
 \FPset\scalefactor{1.50}
 
@@ -48,7 +67,7 @@
 \ \t\rubble   
 \ \t\stalagmites
 \ \t\water
-\ \t\icepiller  
+\ \t\icepillar  
 \ \t\nest       
 \ \t\snowrock   
 \ \t\goldenorb     
@@ -86,7 +105,7 @@
 %
 \ \t\lgice
 \ \t\hugewater
-\ \t\lgree    
+\ \t\lgtree    
 \ \t\largewater   
 \ \t\lgcorrA      
 \ \t\lgcorrB      
