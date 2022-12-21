@@ -1,0 +1,179 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage{suffix}
+\usepackage{calc}
+\usepackage[landscape,text={10.5in,6.6in},centering]{geometry}
+%\usepackage[landscape,text={265.1mm,167.2mm},centering]{geometry}
+\usepackage{array}
+\setlength\arrayrulewidth{1pt}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{fp}
+\newfontfamily\pirata{Germania One}
+\setmainfont{Germania One}
+\usetikzlibrary{calc,positioning}
+
+\newfontfamily\tower{High Tower Text}
+
+
+\begin{document}
+
+\newdimen\boxw
+\boxw=\textwidth
+\advance\boxw by -\arrayrulewidth
+\divide\boxw by 6
+\advance\boxw by -\arrayrulewidth
+
+\newdimen\boxh
+\boxh=\textheight
+\divide\boxh by 6
+
+
+\newcommand\themonster[2][]{%
+  \begin{minipage}{\boxw}
+  \centering
+  \ifx!#1!
+  \else  
+    \leavevmode
+    \includegraphics[height=0.80\boxh]{/red1/Gloomhaven/Scenario-Book/Monsters/crushed/Horz-#1.png}%
+  \endgraf
+  \fi
+
+  {\large\tower#2}%
+  \end{minipage}\egroup}
+
+\def\monster(#1,#2){%
+  \node at (#1,#2) \bgroup\themonster
+}
+
+\parindent=0pt
+
+\newcommand\boxwidth{260} % mm
+\newcommand\boxheight{160} % mm
+
+\newcommand\category[1]{{\LARGE\pirata#1}}
+
+\FPdiv\boxx\boxwidth 6
+\FPdiv\boxy\boxheight 6
+
+\def\above(#1,#2){% x y of box
+  \draw[divider] ($(#1-0.4,#2+0.5)$) -- +(0.8, 0);
+}
+
+\tikzstyle{panel}=[thin,lightgray] 
+\tikzstyle{separator}=[line width=7pt,color=white!85!gray]
+
+\newcommand\after[1]{$#1+0.5$}
+
+\begin{center} 
+\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
+
+\draw [separator] (2.5,0.5) -- ++(0,4) -- ++(1,0) -- ++(0,2);
+
+\draw [separator] (3.5,0.5) -- ++(0,1) -- ++(1,0) -- ++(0,5);
+
+\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+
+%\draw [divider] (0.5,0.5) rectangle (6.5,6.5);
+\foreach \x in {1.5,2.5,...,4.5,5.5} {
+  \draw [panel] (\x,1) -- (\x,6);
+}
+%\foreach \x in {1,2,...,6} {
+%  \above(\x,2); \above(\x,4);
+%}
+%\above(4,1);
+%\above(6,3);
+%\above(6,5);
+
+\node [anchor=north] at (2,6.5) {\category{Elemental Demons}};
+
+\node [anchor=north] at (3.5,4.25) {\category{Deadly Mechanisms}};
+
+\node [anchor=north] at (5,6.5) {\category{Revenants}};
+
+\node [anchor=south] at (6,0.5) {\category{Mountains}};
+
+
+\monster(1,5.5){Chaos Demon};
+\monster(1,3.5)[Flame-Demon]{Flame Demon};
+\monster(1,1.5)[Frost-Demon]{Frost Demon};
+
+\monster(2,5.5)[Wind-Demon]{Wind Demon};
+\monster(2,3.5)[Earth-Demon]{Earth Demon};
+\monster(2,1.5)[Night-Demon]{Night Demon};
+
+\monster(3,5.5)[Sun-Demon]{Sun Demon};
+\monster(3,3.5){Ruined Machine};
+\monster(3,1.5){Robotic Boltshooter};
+
+\monster(4,5.5){Flaming Bladespinner};
+\monster(4,3.5){Steel Automaton};
+\monster(4,2)[Ancient-Artillery]{Ancient Artillery};
+\monster(4,1)[Living-Spirit]{Living Spirit};
+
+\monster(5,5.5){Frozen Corpse};
+\monster(5,3.5){Ice Wraith};
+\monster(5,1.5){Living Doom};
+
+\monster(6,6)[Living-Bones]{Living Bones};
+\monster(6,5)[Hound]{Hound};
+\monster(6,4)[Rending-Drake]{Rending Drake};
+\monster(6,3)[Spitting-Drake]{Spitting Drake};
+\monster(6,1.5){Polar Bear};
+
+
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
+
+\draw [separator] (2.5,0.5) -- ++(0,6);
+
+\draw [separator] (6.5,1.5) -- ++(-1,0) -- ++(0,5);
+
+%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+
+\foreach \x in {1.5,2.5,...,4.5,5.5} {
+  \draw [panel] (\x,1) -- (\x,6);
+}
+
+\node [anchor=north] at (1.5,6.5) {\category{Water Hazards}};
+
+\node [anchor=north] at (4,6.5) {\category{Algox and Friends}};
+
+\node [anchor=north] at (6,6.5) {\category{Heavyweights}};
+
+
+\monster(1,5.5){Lurker Soldier};
+\monster(1,3.5){Lurker Mindsnipper};
+\monster(1,1.5){Lurker Clawcrusher};
+
+\monster(2,5){Lurker Wavethrower};
+\monster(2,3){Lightning Eel};
+\monster(2,2){Pirhana Pig};
+\monster(2,1)[Deep-Terror]{Deep Terror};
+
+\monster(3,5){Algox Icespeaker};
+\monster(3,2.5){Algox Snowspeaker};
+\monster(3,1){Algox Archer};
+
+\monster(4,5){Algox Guard};
+\monster(4,2){Algox Scout};
+
+\monster(5,5.5){Algox Priest};
+\monster(5,3.5){Abael Scout};
+\monster(5,2){Abael Herder};
+\monster(5,1)[Vermling-Scout]{Vermling Scout};
+
+\monster(6,5.5)[Savvas-Lavaflow]{Savvas Lavaflow};
+\monster(6,3.5)[Savvas-Icestorm]{Savvas Icestorm};
+\monster(6,2)[Harrower-Infester]{Harrower Infester};
+\monster(6,1)[Vermling-Shaman]{Vermling Priest};
+
+
+\end{tikzpicture}
+
+\end{center}
+
+\end{document}
