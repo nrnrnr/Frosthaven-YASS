@@ -174,6 +174,47 @@
 
 \end{tikzpicture}
 
+
+
+\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
+
+\draw [separator] (0.5,3.5) -- ++(4,0) -- ++(0,-1) -- ++(-1,0) -- ++(0,-2);
+
+\draw [separator] (4.5,1.5) -- ++(0,1) -- ++(2,0);
+
+%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+
+\foreach \x in {1.5,2.5,...,4.5,5.5} {
+  \draw [panel] (\x,1) -- (\x,6);
+}
+
+%\node [anchor=north] at (1.5,6.5) {\category{Water Hazards}};
+
+%\node [anchor=north] at (4,6.5) {\category{Algox and Friends}};
+
+\node [anchor=north] at (2,3.4) {\category{Annoyances {\&}c}};
+
+\node at (3.5,5) {\textcolor{gray!60!white}{\Huge\pirata Crimson Scales supplies}};
+
+\node at (5,1) {\textcolor{gray!60!white}{\Huge\pirata Frosthaven supplies}};
+
+
+\monster(1,3){Snow Imp};
+\monster(1,2)[Forest-Imp]{Forest Imp};
+\monster(1,1)[Black-Imp]{Black Imp};
+
+\monster(2,2){Shrike Fiend};
+
+\monster(3,3){Burrowing Blade};
+\monster(3,1.5)[City-Guard]{City Guard};
+\monster(4,3)[Ooze]{Ooze};
+
+\monster(5,1.5){Letter Tokens};
+\monster(6,1.5){Number Tokens};
+
+
+\end{tikzpicture}
+
 \end{center}
 
 \end{document}
