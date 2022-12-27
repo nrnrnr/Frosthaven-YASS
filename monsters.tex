@@ -15,11 +15,13 @@
 \usetikzlibrary{calc,positioning}
 
 \newfontfamily\tower{High Tower Text}
+\newfontfamily\towerbold{High Tower Text Bold}
 
 
 \newenvironment{layout}
   {\vbox to \textheight\bgroup\vss
    \tikzpicture[x=\boxw,y=\boxh,node distance=0mm]
+   \cutline;
    \clip ($(0.5,0.5)+(-1pt,-1pt)$) rectangle +($(6,6)+(1pt,1pt)$);
   }
   {\endtikzpicture\vss\egroup}
@@ -57,7 +59,8 @@
 \newcommand\anonymous{\usebox\anonbox}
 
 
-\newcommand\mylabel[1]{{\large\tower#1}}
+%\newcommand\mylabel[1]{{\large\towerbold#1}}
+\newcommand\mylabel[1]{{\tower\fontsize{13pt}{15pt}\selectfont#1}}
 
 \newcommand\themonster[2][]{%
   \begin{minipage}{\boxw}
@@ -101,7 +104,12 @@
     \endgraf
    \fi
 
+  \vspace*{7.5pt}
+
   \mylabel{#2}%
+
+  \vspace*{-7.5pt}
+
   \end{minipage}\egroup
 }
 
@@ -127,14 +135,19 @@
       \end{tikzpicture}
     \endgraf
 
+  \vspace*{7.5pt}
+
   \mylabel{#3}%
+
+  \vspace*{-7.5pt}
+
   \end{minipage}%
 }
 \parindent=0pt
 
 
 
-\newcommand\category[1]{{\LARGE\pirata#1}}
+\newcommand\category[1]{{\huge\pirata#1}}
 
 \def\above(#1,#2){% x y of box
   \draw[divider] ($(#1-0.4,#2+0.5)$) -- +(0.8, 0);
@@ -160,6 +173,8 @@
   \draw [panel] (\x,1) -- (\x,6);
 }
 
+\node [category,fill=white,anchor=north,inner sep=10pt] at (3.5,4.5) {\category{Deadly Mechanisms}};
+
 
 \draw [separator] (2.5,0.5) -- ++(0,4) -- ++(1,0) -- ++(0,2);
 
@@ -176,8 +191,6 @@
 %\above(6,5);
 
 \node [category,anchor=north] at (2,6.5) {\category{Elemental Demons}};
-
-\node [category,anchor=north,inner sep=10pt] at (3.5,4.5) {\category{Deadly Mechanisms}};
 
 \node [category,anchor=north] at (5,6.5) {\category{Revenants}};
 
@@ -200,8 +213,8 @@
 
 \monster*(4,5.5)[flaming-bladespinner]{Flaming Bladespinner};
 \monster*(4,3.5)[steel-automaton]{Steel Automaton};
-\monster(4,2)[Ancient-Artillery]{Ancient Artillery};
-\monster(4,1)[Living-Spirit]{Living Spirit};
+\monster(4,2.05)[Ancient-Artillery]{Ancient Artillery};
+\monster(4,0.95)[Living-Spirit]{Living Spirit};
 
 \monster*(5,5.5)[frozen-corpse]{Frozen Corpse};
 \monster*(5,3.5)[ice-wraith]{Ice Wraith};
@@ -212,8 +225,8 @@
 \end{scope}
 
 \begin{scope}[shift={(0pt,-2pt)}]
-\monster(6,6)[Living-Bones]{Living Bones};
-\monster(6,5)[Hound]{Hound};
+\monster(6,6.03)[Living-Bones]{Living Bones};
+\monster(6,4.97)[Hound]{Hound};
 \monster(6,4)[Rending-Drake]{Rending Drake};
 \monster(6,3)[Spitting-Drake]{Spitting Drake};
 \end{scope}
@@ -251,8 +264,8 @@
 \monster*(1,1.5)[lurker-clawcrusher]{Lurker Clawcrusher};
 
 \monster*(2,5)[lurker-wavethrower]{Lurker Wavethrower};
-\monster*(2,3)[lightning-eel]{Lightning Eel};
-\monster*(2,2)[piranha-pig]{Piranha Pig};
+\monster*(2,3.05)[lightning-eel]{Lightning Eel};
+\monster*(2,2.05)[piranha-pig]{Piranha Pig};
 \monster(2,1)[Deep-Terror]{Deep Terror};
 
 \node at (3,5) {\photo[0.072]{260 1670 1000 2300}{Algox Icespeaker}};
@@ -267,18 +280,18 @@
 \monster*(3,1)[algox-archer]{Algox Archer};
 
 \monster*(4,5)[algox-guard]{Algox Guard};
-\monster*(4,2)[algox-scout]{Algox Scout};
+\monster*(4,2.05)[algox-scout]{Algox Scout};
 
 \monster*(5,5.5)[algox-shaman]{Algox Priest};
 \monster*(5,3.5)[abael-scout]{Abael Scout};
 
-\node at (5,2) {\photo[0.115]{1330 1800 1780 2240}{Abael Herder}};
+\node at (5,2.05) {\photo[0.115]{1330 1800 1780 2240}{Abael Herder}};
 
 \monster(5,1)[Vermling-Scout]{Vermling Scout};
 
 \monster(6,5.5)[Savvas-Lavaflow]{Savvas Lavaflow};
 \monster(6,3.5)[Savvas-Icestorm]{Savvas Icestorm};
-\monster(6,2)[Harrower-Infester]{Harrower Infester};
+\monster(6,2.05)[Harrower-Infester]{Harrower Infester};
 \monster(6,1)[Vermling-Shaman]{Vermling Priest};
 
 \end{scope}
