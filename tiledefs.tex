@@ -31,7 +31,10 @@
 \deftile\nest          4  {Nest{\qm}}      {2600 2230 3060 2700}
 \deftile\snowrock      5  {Snow Rock}  {3140 2280 3550 2700}
 
+{\let\tilefont=\large
 \deftile*\goldenorb     {}  {Glowing Orb{\qm}} {100 1580 520 2020}
+}
+
 \deftile\debris        5  {Debris} {620 1600 1120 2080}
 \deftile*\ladder        4  {Ladder{\qm}} {1230 1650 1620 2060}
 \deftile\snowdrift     6  {Snow Drift} {1740 1520 2150 2000}
@@ -43,11 +46,13 @@
 \deftile[\normalscale,angle=-8]\snowcor     {10} {Snow Corridor} {1170 930 1680 1420}
 \deftile\snowdoor     {6} {Snow Door}     {1680 980 2180 1470}
 
+{\let\tilefont=\large
 \deftile*\crate         4  {Crate}   {160 5 480 450}
 \deftile*\metalcab      4  {Metal Cabinet} {570 30 1010 380}
 \deftile*\barrels       2  {Barrels}  {1100 0 1520 410}
-\deftile*\altar         6  {Altar}   {1580 1 1900 400}
 \deftile*\post          {}  {Mast{\qm}}    {1970 0 2280 440}
+}
+\deftile*\altar         6  {Altar}   {1580 1 1900 400}
 \deftile\metaldoor     4  {Metal Door}   { 2260 0 2710 320}
 \deftile*\dundoor       5  {Dungeon Door} { 2790 5 3220 380}
 
@@ -86,4 +91,6 @@
 
 \def\tilejpg{treasure-000.jpg}
 
+{\let\tilefont=\large
 \deftile*[\normalscale,angle=5]\treasure 5 {Treasure Chest} {1780 1220 2260 1500}
+}

@@ -16,23 +16,26 @@
 
 \parindent=0pt
 
-\newfontfamily\tower{High Tower Text}
+\newfontfamily\towerfont{High Tower Text}
+\newcommand\tower{\towerfont\large}
 
 \newcommand\cutline{%
-  \draw [dashed,dash pattern=on 15pt off 8pt,color=white!90!black,rounded corners=4mm] (0.5,0.5) rectangle +(6,6)
+  \draw [dashed,dash pattern=on 15pt off 8pt,color=white!80!black,rounded corners=4mm] (0.5,0.5) rectangle +(6,6)
 }
 
+\fboxsep=0pt
 
 \thispagestyle{empty}
 
 \def\tilejpg{terrain-001.jpg}
-\def\tilefont{\large}
+\def\tilefont{\Large}
 
 \newcommand\ttitle[2]{%
  \begin{minipage}[t]{10em}
  \tolerance=800
  \centering
  \tilefont
+ \baselineskip=0.9\baselineskip
  \raisebox{0pt}{\tower#1} #2%
  \end{minipage}%
 }
@@ -43,6 +46,8 @@
  \tolerance=800
  \centering
  \tilefont
+ \baselineskip=0.9\baselineskip
+ \def\baselinestretch{0.95}%
  \raisebox{0pt}{\tower#1}
  #2%
  \end{minipage}%
@@ -89,21 +94,23 @@
 
 \cutline;
 
+\clip (0.5,0.5) rectangle +(6,6);
+
 %\draw [divider] (0.5,0.5) rectangle (6.5,6.5);
 \foreach \x in {1.5,2.5,...,4.5} {
   \draw [divider] (\x,0.5) -- (\x,6.5);
 }
 \draw [divider] (5.5,3.7) -- +(0,2.8);
 \above(1,3);
-\above(2,2);
-\above(2,4);
-\above(3,2);
-\above(3,4);
-\above(3,5);
+\above(2,1.9);
+\above(2,4.1);
+\above(3,1.9);
+\above(3,4.1);
+\above(3,4.93);
 \above(4,3);
 \above(5,3);
-\above(5,4);
-\above(5,5);
+\above(5,4.1);
+\above(5,4.93);
 \above(6,3);
 \above(5.5,3);
 
@@ -118,13 +125,10 @@
 
 
 
-%\node (rubble) at ($(2,\hi)+(0,-1mm)$) {{\t\rubble}};
-%\node [above=-4mm of rubble] {{\t\spiketrap}};
-%\node [below=-3mm of rubble] {{\t\cavedoor}};
 \node (spiketrap) at (2,5.8) {{\t\spiketrap}};
 
-\node (rubble) [below left=0mm and 2mm of spiketrap.south] {{\t\rubble}};
-\node [right=3mm of rubble] {\narrow{\t\cavedoor}};
+\node (rubble) [below left=0mm and 3mm of spiketrap.south] {{\t\rubble}};
+\node [right=4mm of rubble] {\narrow{\t\cavedoor}};
 
 
 \node (2mid) at (2,\mid) {{\t\stalagmites}};
@@ -141,9 +145,9 @@
 \node [left=of 3hu] {{\t\dundoor}};
 \node [right=of 3hu] {{\t\pressureplate}};
 
-\node (3hl) at (3,5) {};
+\node (3hl) at (3.05,5) {};
 \node [anchor=east,left=of 3hl] {\narrow{\t\metaldoor}};
-\node [anchor=west,right=of 3hl] {{\narrow{\t\nest}}};
+\node [anchor=west,right=1mm of 3hl] {{\narrow{\t\nest}}};
 
 
 
@@ -167,7 +171,7 @@
 
 \node at (5,1) {{\t\icyspikes}};
 \node at (5,2) {{\t\corrB}};
-\node at (5.5,2.5) {{\t\hugewater}};
+\node at (5.5,2.40) {{\t\hugewater}};
 \node at (5,3) {{\t\dungcor}};
 
 \node (golden) at (5.07,5.9) {{\t\goldenorb}};
@@ -187,7 +191,7 @@
 
 \node at (6,1) {{\t\conduit}};
 \node at (6,2.9) {{\t\lgtree}};
-\node at (6,2) {\t\lgice};
+\node at (6,1.88) {\t\lgice};
 
 
 \node (bigrocks) at (6,\top) {{\t\largerocks}};
@@ -195,6 +199,7 @@
 \node [below=of bigrocks] {{\t\logtile}};
 
 \end{tikzpicture}
+
 
 
 %%  
