@@ -118,9 +118,13 @@
 
 
 
-\node (rubble) at (2,\hi) {{\t\rubble}};
-\node [above=-3mm of rubble] {{\t\spiketrap}};
-\node [below=-2mm of rubble] {{\t\cavedoor}};
+%\node (rubble) at ($(2,\hi)+(0,-1mm)$) {{\t\rubble}};
+%\node [above=-4mm of rubble] {{\t\spiketrap}};
+%\node [below=-3mm of rubble] {{\t\cavedoor}};
+\node (spiketrap) at (2,5.8) {{\t\spiketrap}};
+
+\node (rubble) [below left=0mm and 2mm of spiketrap.south] {{\t\rubble}};
+\node [right=3mm of rubble] {\narrow{\t\cavedoor}};
 
 
 \node (2mid) at (2,\mid) {{\t\stalagmites}};
@@ -166,17 +170,19 @@
 \node at (5.5,2.5) {{\t\hugewater}};
 \node at (5,3) {{\t\dungcor}};
 
-\node (golden) at (5,4) {{\t\goldenorb}};
-\node [left=-5mm of golden] {{\t\altar}};
-\node [right=-5mm of golden] {{\t\post}};
+\node (golden) at (5.07,5.9) {{\t\goldenorb}};
+\node [right=-6mm of golden] {{\t\post}};
+\node [left=-3mm of golden] {\t\treasure};
 
 \node (crate) at (5,5) {{\t\crate}};
 \node [left=-5mm of crate]  {{\t\barrels}};
 \node [right=-5mm of crate] {{\t\metalcab}};
 
-\node (5hu) at (5,6) {};
-\node [left=-2mm of 5hu] {{\t\ladder}};
-\node [right=-2mm of 5hu] {\t\treasure};
+
+
+\node (5hl) at (5,4) {};
+\node [left=-2mm of 5hl] {{\t\ladder}};
+\node [right=-2mm of 5hl] {{\t\altar}};
 
 
 \node at (6,1) {{\t\conduit}};
