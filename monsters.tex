@@ -2,8 +2,8 @@
 \pagestyle{empty}
 \usepackage{suffix}
 \usepackage{calc}
-\usepackage[landscape,text={10.5in,6.6in},centering]{geometry}
-%\usepackage[landscape,text={265.1mm,167.2mm},centering]{geometry}
+%\usepackage[landscape,text={10.5in,6.6in},centering]{geometry}
+\usepackage[landscape,text={267.1mm,170.2mm},centering]{geometry}
 \usepackage{array}
 \setlength\arrayrulewidth{1pt}
 \usepackage{tikz}
@@ -17,7 +17,17 @@
 \newfontfamily\tower{High Tower Text}
 
 
+\newenvironment{layout}
+  {\vbox to \textheight\bgroup\vss
+   \tikzpicture[x=\boxw,y=\boxh,node distance=0mm]
+   \clip ($(0.5,0.5)+(-1pt,-1pt)$) rectangle +($(6,6)+(1pt,1pt)$);
+  }
+  {\endtikzpicture\vss\egroup}
+
+
 \begin{document}
+
+\overfullrule=10pt
 
 \newdimen\boxw
 \boxw=\textwidth
@@ -29,56 +39,135 @@
 \boxh=\textheight
 \divide\boxh by 6
 
+\newcommand\boxwidth{267} % mm
+\newcommand\boxheight{170} % mm
+
+\FPdiv\boxx\boxwidth 6
+\FPdiv\boxy\boxheight 6
+
+
+\newsavebox\anonbox
+\begin{lrbox}{\anonbox}%
+      \begin{tikzpicture}[x=0.45pt,y=0.45pt]
+        \node [anchor=center] at (60,0) {\hbox to 0pt{\hss\Huge ?\hss}};
+        \draw[line width=3pt,color=red!80!black] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+        ++(-120:60) -- ++(-180:60) -- cycle;
+       \end{tikzpicture}%
+\end{lrbox}
+\newcommand\anonymous{\usebox\anonbox}
+
+
+\newcommand\mylabel[1]{{\large\tower#1}}
 
 \newcommand\themonster[2][]{%
   \begin{minipage}{\boxw}
   \centering
-  \ifx!#1!
-  \else  
     \leavevmode
+  \ifx!#1!
+    \anonymous
+  \else  
     \includegraphics[height=0.80\boxh]{/red1/Gloomhaven/Scenario-Book/Monsters/crushed/Horz-#1.png}%
   \endgraf
   \fi
 
-  {\large\tower#2}%
-  \end{minipage}\egroup}
+  \mylabel{#2}%
+  \end{minipage}\egroup
+}
 
 \def\monster(#1,#2){%
   \node at (#1,#2) \bgroup\themonster
 }
 
+
+
+\newcommand\thefmonster[2][]{%
+  \begin{minipage}{\boxw}
+    \centering
+    \leavevmode
+    \ifx!#1!
+      \anonymous
+    \else  
+      \begin{tikzpicture}[x=0.45pt,y=0.45pt]
+        \begin{scope}
+        \clip (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+        ++(-120:60) -- ++(-180:60) -- cycle;
+        \node[anchor=west,inner sep=0] (image) at (0,0)
+             {\includegraphics*[scale=0.45,angle=90,viewport={140 140 260 260}]
+             {/red1/frosthaven/images/monster-stat-cards/frosthaven/fh-#1-0.png}};
+        \end{scope}
+        \draw[line width=3pt,color=red!80!black] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+        ++(-120:60) -- ++(-180:60) -- cycle;
+      \end{tikzpicture}
+    \endgraf
+   \fi
+
+  \mylabel{#2}%
+  \end{minipage}\egroup
+}
+
+\def\fmonster(#1,#2){%
+  \node at (#1,#2) \bgroup\thefmonster
+}
+
+\WithSuffix\newcommand\monster*{\fmonster}
+
+\newcommand\photo[3][0.08]{%
+  \begin{minipage}{\boxw}
+    \centering
+    \leavevmode
+      \begin{tikzpicture}[x=0.45pt,y=0.45pt]
+        \begin{scope}
+        \clip (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+        ++(-120:60) -- ++(-180:60) -- cycle;
+        \node[anchor=west,inner sep=0] (image) at (0,0)
+             {\includegraphics*[scale=#1,viewport={#2}]{enemies-002.jpg}};
+        \end{scope}
+        \draw[line width=3pt,color=red!80!black] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+        ++(-120:60) -- ++(-180:60) -- cycle;
+      \end{tikzpicture}
+    \endgraf
+
+  \mylabel{#3}%
+  \end{minipage}%
+}
 \parindent=0pt
 
-\newcommand\boxwidth{260} % mm
-\newcommand\boxheight{160} % mm
+
 
 \newcommand\category[1]{{\LARGE\pirata#1}}
-
-\FPdiv\boxx\boxwidth 6
-\FPdiv\boxy\boxheight 6
 
 \def\above(#1,#2){% x y of box
   \draw[divider] ($(#1-0.4,#2+0.5)$) -- +(0.8, 0);
 }
 
 \tikzstyle{panel}=[thin,lightgray] 
-\tikzstyle{separator}=[line width=7pt,color=white!85!gray]
+\tikzstyle{separator}=[line width=5.5pt,color=white!85!gray]
+\tikzstyle{category}=[inner sep=7pt]
 
 \newcommand\after[1]{$#1+0.5$}
 
+\newcommand\cutline{%
+  \draw [dashed,dash pattern=on 15pt off 8pt,color=white!90!black,rounded corners=6mm] (0.5,0.5) rectangle +(6,6)
+%  \draw [black] (0.5,0.5) rectangle +(6,6)
+}
+
 \begin{center} 
-\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
 
-\draw [separator] (2.5,0.5) -- ++(0,4) -- ++(1,0) -- ++(0,2);
 
-\draw [separator] (3.5,0.5) -- ++(0,1) -- ++(1,0) -- ++(0,5);
+\begin{layout}
 
-\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
-
-%\draw [divider] (0.5,0.5) rectangle (6.5,6.5);
 \foreach \x in {1.5,2.5,...,4.5,5.5} {
   \draw [panel] (\x,1) -- (\x,6);
 }
+
+
+\draw [separator] (2.5,0.5) -- ++(0,4) -- ++(1,0) -- ++(0,2);
+
+\draw [separator] (3.5,0.5) -- ++(0,1.08) -- ++(1,0) -- (4.5, 6.5);
+
+\draw [separator] (5.5,0.5) -- ++(0,4.93) -- ++(1,0);
+
+%\draw [divider] (0.5,0.5) rectangle (6.5,6.5);
 %\foreach \x in {1,2,...,6} {
 %  \above(\x,2); \above(\x,4);
 %}
@@ -86,16 +175,18 @@
 %\above(6,3);
 %\above(6,5);
 
-\node [anchor=north] at (2,6.5) {\category{Elemental Demons}};
+\node [category,anchor=north] at (2,6.5) {\category{Elemental Demons}};
 
-\node [anchor=north] at (3.5,4.25) {\category{Deadly Mechanisms}};
+\node [category,anchor=north,inner sep=10pt] at (3.5,4.5) {\category{Deadly Mechanisms}};
 
-\node [anchor=north] at (5,6.5) {\category{Revenants}};
+\node [category,anchor=north] at (5,6.5) {\category{Revenants}};
 
-\node [anchor=south] at (6,0.5) {\category{Mountains}};
+\node [category,anchor=south] at (6,0.5) {\category{Mountains}};
 
 
-\monster(1,5.5){Chaos Demon};
+\begin{scope}[shift={(0pt,9pt)}]
+
+\monster*(1,5.5)[chaos-demon]{Chaos Demon};
 \monster(1,3.5)[Flame-Demon]{Flame Demon};
 \monster(1,1.5)[Frost-Demon]{Frost Demon};
 
@@ -104,66 +195,85 @@
 \monster(2,1.5)[Night-Demon]{Night Demon};
 
 \monster(3,5.5)[Sun-Demon]{Sun Demon};
-\monster(3,3.5){Ruined Machine};
-\monster(3,1.5){Robotic Boltshooter};
+\monster*(3,3.5)[ruined-machine]{Ruined Machine};
+\monster*(3,1.5)[robotic-boltshooter]{Robotic Boltshooter};
 
-\monster(4,5.5){Flaming Bladespinner};
-\monster(4,3.5){Steel Automaton};
+\monster*(4,5.5)[flaming-bladespinner]{Flaming Bladespinner};
+\monster*(4,3.5)[steel-automaton]{Steel Automaton};
 \monster(4,2)[Ancient-Artillery]{Ancient Artillery};
 \monster(4,1)[Living-Spirit]{Living Spirit};
 
-\monster(5,5.5){Frozen Corpse};
-\monster(5,3.5){Ice Wraith};
-\monster(5,1.5){Living Doom};
+\monster*(5,5.5)[frozen-corpse]{Frozen Corpse};
+\monster*(5,3.5)[ice-wraith]{Ice Wraith};
+\monster*(5,1.5)[living-doom]{Living Doom};
 
+\monster*(6,1.5)[polar-bear]{Polar Bear};
+
+\end{scope}
+
+\begin{scope}[shift={(0pt,-2pt)}]
 \monster(6,6)[Living-Bones]{Living Bones};
 \monster(6,5)[Hound]{Hound};
 \monster(6,4)[Rending-Drake]{Rending Drake};
 \monster(6,3)[Spitting-Drake]{Spitting Drake};
-\monster(6,1.5){Polar Bear};
+\end{scope}
+
+  \cutline;
+
+\end{layout}
 
 
-\end{tikzpicture}
 
-
-\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
-
-\draw [separator] (2.5,0.5) -- ++(0,6);
-
-\draw [separator] (6.5,1.5) -- ++(-1,0) -- ++(0,5);
-
-%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+%\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
+\begin{layout}
 
 \foreach \x in {1.5,2.5,...,4.5,5.5} {
   \draw [panel] (\x,1) -- (\x,6);
 }
 
-\node [anchor=north] at (1.5,6.5) {\category{Water Hazards}};
+\draw [separator] (2.5,0.5) -- ++(0,6);
 
-\node [anchor=north] at (4,6.5) {\category{Algox and Friends}};
+\draw [separator] (6.5,1.58) -- ++(-1,0) -- ++(0,5);
 
-\node [anchor=north] at (6,6.5) {\category{Heavyweights}};
+%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+
+\node [category,anchor=north] at (1.5,6.5) {\category{Water Hazards}};
+
+\node [category,anchor=north] at (4,6.5) {\category{Algox and Friends}};
+
+\node [category,anchor=north] at (6,6.5) {\category{Heavyweights}};
 
 
-\monster(1,5.5){Lurker Soldier};
-\monster(1,3.5){Lurker Mindsnipper};
-\monster(1,1.5){Lurker Clawcrusher};
+\begin{scope}[shift={(0pt,9pt)}]
 
-\monster(2,5){Lurker Wavethrower};
-\monster(2,3){Lightning Eel};
-\monster(2,2){Pirhana Pig};
+\monster(1,5.5)[Lurker]{Lurker Soldier};
+\monster*(1,3.5)[lurker-mindsnipper]{Lurker Mindsnipper};
+\monster*(1,1.5)[lurker-clawcrusher]{Lurker Clawcrusher};
+
+\monster*(2,5)[lurker-wavethrower]{Lurker Wavethrower};
+\monster*(2,3)[lightning-eel]{Lightning Eel};
+\monster*(2,2)[piranha-pig]{Piranha Pig};
 \monster(2,1)[Deep-Terror]{Deep Terror};
 
-\monster(3,5){Algox Icespeaker};
-\monster(3,2.5){Algox Snowspeaker};
-\monster(3,1){Algox Archer};
+\node at (3,5) {\photo[0.072]{260 1670 1000 2300}{Algox Icespeaker}};
 
-\monster(4,5){Algox Guard};
-\monster(4,2){Algox Scout};
 
-\monster(5,5.5){Algox Priest};
-\monster(5,3.5){Abael Scout};
-\monster(5,2){Abael Herder};
+
+\node at (3, 2.5) {\photo[0.084]{750 560 1400 1080}{Algox Snowspeaker}};
+%\monster(3,2.5){Algox Snowspeaker};
+
+
+
+\monster*(3,1)[algox-archer]{Algox Archer};
+
+\monster*(4,5)[algox-guard]{Algox Guard};
+\monster*(4,2)[algox-scout]{Algox Scout};
+
+\monster*(5,5.5)[algox-shaman]{Algox Priest};
+\monster*(5,3.5)[abael-scout]{Abael Scout};
+
+\node at (5,2) {\photo[0.115]{1330 1800 1780 2240}{Abael Herder}};
+
 \monster(5,1)[Vermling-Scout]{Vermling Scout};
 
 \monster(6,5.5)[Savvas-Lavaflow]{Savvas Lavaflow};
@@ -171,49 +281,59 @@
 \monster(6,2)[Harrower-Infester]{Harrower Infester};
 \monster(6,1)[Vermling-Shaman]{Vermling Priest};
 
+\end{scope}
 
-\end{tikzpicture}
+  \cutline;
+
+\end{layout}
 
 
 
-\begin{tikzpicture}[x=\boxx mm,y=\boxy mm,node distance=0mm]
 
-\draw [separator] (0.5,3.5) -- ++(4,0) -- ++(0,-1) -- ++(-1,0) -- ++(0,-2);
 
-\draw [separator] (4.5,1.5) -- ++(0,1) -- ++(2,0);
+\begin{layout}
 
-%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
 
 \foreach \x in {1.5,2.5,...,4.5,5.5} {
   \draw [panel] (\x,1) -- (\x,6);
 }
 
+\draw [separator] (0.5,3.7) -- ++(4,0) -- ++(0,-1.3) -- ++(-1,0) -- ++(0,-1.9);
+
+\draw [separator] (4.5,2.4) -- ++(2,0);
+
+%\draw [separator] (5.5,0.5) -- ++(0,5) -- ++(1,0) -- ++(0,1);
+
 %\node [anchor=north] at (1.5,6.5) {\category{Water Hazards}};
 
 %\node [anchor=north] at (4,6.5) {\category{Algox and Friends}};
 
-\node [anchor=north] at (2,3.4) {\category{Annoyances {\&}c}};
+\node [category,anchor=north] at (2,3.4) {\category{Annoyances {\&}c}};
 
 \node at (3.5,5) {\textcolor{gray!60!white}{\Huge\pirata Crimson Scales supplies}};
 
 \node at (5,1) {\textcolor{gray!60!white}{\Huge\pirata Frosthaven supplies}};
 
 
-\monster(1,3){Snow Imp};
+\begin{scope}[shift={(0pt,5pt)}]
+\monster*(1,3)[snow-imp]{Snow Imp};
 \monster(1,2)[Forest-Imp]{Forest Imp};
 \monster(1,1)[Black-Imp]{Black Imp};
 
-\monster(2,2){Shrike Fiend};
+\monster*(2,2)[shrike-fiend]{Shrike Fiend};
 
-\monster(3,3){Burrowing Blade};
+\monster*(3,3)[burrowing-blade]{Burrowing Blade};
 \monster(3,1.5)[City-Guard]{City Guard};
 \monster(4,3)[Ooze]{Ooze};
+\end{scope}
 
-\monster(5,1.5){Letter Tokens};
-\monster(6,1.5){Number Tokens};
+\node at (5,1.5) {\mylabel{Letter Tokens}};
+\node at (6,1.5) {\mylabel{Number Tokens}};
 
+  \cutline;
 
-\end{tikzpicture}
+\end{layout}
+
 
 \end{center}
 

@@ -77,6 +77,13 @@
 \begin{center}
 
 \begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
+\loadgrid{enemies-002.jpg}
+\xscale[north]{2300}
+\yscale[east]{-5}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
 \loadgrid{terrain-000.jpg}
 \xscale[north]{2300}
 \yscale[east]{-5}
@@ -170,6 +177,23 @@
 
 \end{tikzpicture}
 
+
+\begin{tikzpicture}[x=0.5pt,y=0.5pt]
+  \clip (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+  ++(-120:60) -- ++(-180:60) -- cycle;
+
+  \node[anchor=west,inner sep=0] (image) at (0,0)
+       {\includegraphics*[scale=0.5,angle=90,viewport={140 140 260 260}]{/red1/frosthaven/images/monster-stat-cards/frosthaven/fh-algox-archer-0.png}};
+%  \draw[blue,thick] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
+%  ++(-120:60) -- ++(-180:60) -- cycle;
+%  \draw[step=10,lightgray,very thin] (0,0) grid (400,400);
+%  \draw[step=50,white] (0,0) grid (400,400);
+%  \draw[step=100,white,thick] (0,0) grid (400,400);
+%  \draw[step=200,darkgray] (0,0) grid (3700,2900);
+\end{tikzpicture}
+
+
+
 \clearpage
 
 \begin{tikzpicture}[x=0.2pt,y=0.2pt]
@@ -188,6 +212,9 @@
 
 \node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
 \end{tikzpicture}
+
+
+
 \end{center}
 
 
