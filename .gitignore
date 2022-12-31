@@ -3,4 +3,4 @@
 *.out
 *.pdf
 *.log
-*-00?.jpg
+/*.jpg

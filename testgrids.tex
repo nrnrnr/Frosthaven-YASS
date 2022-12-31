@@ -1,3 +1,4 @@
+\newcommand\fhpath{/red1/frosthaven/images/monster-stat-cards/frosthaven}
 \documentclass{article}
 \pagestyle{empty}
 \usepackage[margin=0.2cm,landscape]{geometry}
@@ -68,7 +69,7 @@
 
 \newcommand\loadgrid[1]{%
   \node[anchor=south west,inner sep=0] (image) at (0,0)
-       {\includegraphics[scale=0.2,viewport=0 0 3748 2860]{#1}};
+       {\includegraphics[scale=0.2,viewport=0 0 3748 2860]{assets/#1}};
   \draw[step=100,gray] (0,0) grid (3700,2900);
   \draw[step=20,lightgray,very thin] (0,0) grid (3700,2900);
   \draw[step=200,darkgray] (0,0) grid (3700,2900);
@@ -146,7 +147,7 @@
 \begin{tikzpicture}[x=0.2pt,y=0.2pt] % 1 point per pixel
 
 \node[anchor=south west,inner sep=0] (image) at (0,0)
-     {\includegraphics[scale=0.2,viewport=0 0 3748 2732]{terrain-001.jpg}};
+     {\includegraphics[scale=0.2,viewport=0 0 3748 2732]{assets/terrain-001.jpg}};
 \draw[step=100,gray] (0,0) grid (3700,2700);
 \draw[step=20,lightgray,very thin] (0,0) grid (3700,2700);
 \draw[step=200,darkgray] (0,0) grid (3700,2700);
@@ -183,7 +184,7 @@
   ++(-120:60) -- ++(-180:60) -- cycle;
 
   \node[anchor=west,inner sep=0] (image) at (0,0)
-       {\includegraphics*[scale=0.5,angle=90,viewport={140 140 260 260}]{/red1/frosthaven/images/monster-stat-cards/frosthaven/fh-algox-archer-0.png}};
+       {\includegraphics*[scale=0.5,angle=90,viewport={140 140 260 260}]{\fhpath/fh-algox-archer-0.png}};
 %  \draw[blue,thick] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
 %  ++(-120:60) -- ++(-180:60) -- cycle;
 %  \draw[step=10,lightgray,very thin] (0,0) grid (400,400);
@@ -198,7 +199,7 @@
 
 \begin{tikzpicture}[x=0.2pt,y=0.2pt]
 \node[anchor=south,inner sep=0] (image) at (0,0)
-     {\includegraphics*[scale=0.2,viewport=1230 1640 1660 2100]{terrain-001.jpg}};
+     {\includegraphics*[scale=0.2,viewport=1230 1640 1660 2100]{assets/terrain-001.jpg}};
 
 
 \node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
@@ -208,7 +209,7 @@
 %
 \begin{tikzpicture}[x=0.2pt,y=0.2pt]
 \node[anchor=south,inner sep=0] (image) at (0,0)
-     {\includegraphics*[scale=0.1,viewport=1230 1640 1660 2100]{terrain-001.jpg}};
+     {\includegraphics*[scale=0.1,viewport=1230 1640 1660 2100]{assets/terrain-001.jpg}};
 
 \node[anchor=north] (0, -1000) {\LARGE 4 Ladder};
 \end{tikzpicture}
@@ -232,7 +233,7 @@
   \begin{lrbox}{#2}
   \begin{tikzpicture}[x=0.2pt,y=0.2pt]
   \node[anchor=south,inner sep=0] (image) at (0,0)
-       {\includegraphics*[scale=#1,viewport=#5]{\tilejpg}};
+       {\includegraphics*[scale=#1,viewport=#5]{assets/\tilejpg}};
   \node[anchor=north] (0, -1000) {\tilefont #3 #4};
   \end{tikzpicture}
   \end{lrbox}

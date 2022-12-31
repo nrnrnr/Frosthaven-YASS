@@ -5,7 +5,7 @@
   \begin{lrbox}{0\null\global\setbox#2}
   \begin{tikzpicture}[x=0.2pt,y=0.2pt]
   \node[anchor=south,inner sep=0] (image) at (0,0)
-       {\includegraphics*[scale=#1,viewport=#5]{\tilejpg}};
+       {\includegraphics*[scale=#1,viewport=#5]{assets/\tilejpg}};
   \node[anchor=north] (0, -1000) {\ttitle{#3}{#4}};
   \end{tikzpicture}
   \end{lrbox}
