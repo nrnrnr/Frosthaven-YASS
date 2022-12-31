@@ -1,0 +1,117 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage{calc}
+\usepackage[margin=1.5cm,right=2cm]{geometry}
+\usepackage{tikz}
+\usepackage{suffix}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{fp}
+\newfontfamily\pirata{Germania One}
+\setmainfont{Germania One}
+\newfontfamily\tower{High Tower Text}
+\begin{document}
+
+\parindent=0pt
+
+
+\thispagestyle{empty}
+
+\def\tilejpg{terrain-001.jpg}
+\def\tilefont{\Large}
+
+\newcommand\qm{}
+
+\newcommand\ttitle[2]{%
+ \begin{minipage}[t]{6em}
+ \tolerance=800
+ \centering
+ \tilefont
+ {\tower#1}
+ #2%
+ \end{minipage}%
+}
+\newcommand\narrowtitle[2]{%
+ \mbox{%
+ \hspace*{-0.5em}%
+ \begin{minipage}[t]{5em}
+ \tolerance=800
+ \centering
+ \tilefont
+ \raisebox{0pt}{\tower#1}
+ #2%
+ \end{minipage}%
+ \hspace*{-0.5em}%
+ }
+}
+
+
+\FPset\scalefactor{1.50}
+
+\FPmul\normalscale\scalefactor{0.1}
+\FPmul\bigscale\scalefactor{0.06666}
+
+
+
+\input{tiledefs}
+
+\renewcommand\t[1]{{\fboxsep=0pt \fbox{\usebox{#1}}}}
+\renewcommand\t[1]{\usebox{#1}}
+
+\def\ {\hskip 10pt plus 50pt minus 5pt}
+
+\t\poisontrap
+\ \t\spiketrap
+\ \t\beartrap
+\ \t\icyspikes
+\ \t\rubble   
+\ \t\stalagmites
+\ \t\water
+\ \t\icepillar  
+\ \t\nest       
+\ \t\snowrock   
+\ \t\goldenorb     
+\ \t\debris        
+\ \t\ladder        
+\ \t\snowdrift     
+\ \t\lavapit       
+\ \t\pressureplate 
+\ \t\cavedoor
+\ \t\dungcor 
+\ \t\snowcor 
+\ \t\snowdoor
+\ \t\corrB
+\ \t\crate    
+\ \t\metalcab 
+\ \t\barrels  
+\ \t\altar    
+\ \t\post     
+\ \t\metaldoor
+\ \t\dundoor  
+%
+\ \t\console      
+\ \t\largerocks   
+\ \t\bookshelf    
+%
+\ \t\sarcophagus  
+\ \t\conduit      
+\ \t\logtile
+%
+\ \t\bblob        
+\ \t\largedebris  
+%
+\ \t\barricade    
+\ \t\supplyshelf  
+%
+\ \t\lgice
+\ \t\hugewater
+\ \t\lgtree    
+\ \t\largewater   
+\ \t\lgcorrA      
+\ \t\lgcorrB      
+\ \t\lgsnow       
+\ \t\lgcorrD      
+\ \t\lgcorrE
+
+
+\end{document}
