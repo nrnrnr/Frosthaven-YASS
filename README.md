@@ -61,7 +61,7 @@ To build the PDFs, follow these steps:
 
  3. Download and install the two image sets above (in the locations of your choice).
  
- 4. Alter the first two lines of `monsters.tex` to point to the locations where you installed the image sets in step 3.  (If you don't have a `crushed` directory, open an issue and I'll try to help.  If I created it, I don't remember how.)
+ 4. Alter the first two lines of `monsters.tex` to point to the locations where you installed the image sets in step 3.  (If you don't have a `crushed` directory, open an issue and I'll try to help.  If it isn't part of Isaac's package, then I must have created it, but I don't remember how.)
  
  5. Build both PDFs:
  
