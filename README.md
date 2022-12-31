@@ -51,16 +51,24 @@ To build the PDFs, follow these steps:
 
  1. Ensure that you have [TeXLive](https://www.tug.org/texlive/) installed.
 
- 2. Download and install the two image sets above (in the locations of your choice).
+ 2. Download and install these fonts:
  
- 3. Alter the first two lines of `monsters.tex` to point to the locations where you installed the assets in step 2.  (If you don't have a `crushed` directory, open an issue and I'll try to help.  If I created it, I don't remember how.)
+      - Germania One
+      - High Tower Text
+      - High Tower Text Bold
+
+    All should be available from free sites.
+
+ 3. Download and install the two image sets above (in the locations of your choice).
  
- 4. Build both PDFs:
+ 4. Alter the first two lines of `monsters.tex` to point to the locations where you installed the image sets in step 3.  (If you don't have a `crushed` directory, open an issue and I'll try to help.  If I created it, I don't remember how.)
+ 
+ 5. Build both PDFs:
  
         xelatex monsters
         xelatex overlays
 
- 5. To create two-sided PDFs, if on Linux:
+ 6. To create two-sided PDFs, if on Linux:
  
         pdftk monsters.pdf cat 1 1 2 2 3 3 output monsters2.pdf
         pdftk overlays.pdf cat 1 1 2 2 3 3 output overlays2.pdf
