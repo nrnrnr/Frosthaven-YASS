@@ -5,9 +5,9 @@ make box labels for the [YASS (Yet Another Storage
 Solution)](https://boardgamegeek.com/thread/1726878/yss-yet-another-storage-solution)
 for Frosthaven.  If you just want US Letter sheets, they are here:
 
-  - [`monsters2.pdf`](monsters2.pdf) contains labels for the monsters.
+  - [`monsters2.pdf`](https://nrnrnr.github.io/Frosthaven-YASS/monsters2.pdf) contains labels for the monsters.
   
-  - [`overlays2.pdf`](overlays2.pdf) contains labels for overlay
+  - [`overlays2.pdf`](https://nrnrnr.github.io/Frosthaven-YASS/overlays2.pdf) contains labels for overlay
     tiles.
     
 Each PDF is two-sided on US letter paper and can simply be printed.
