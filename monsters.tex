@@ -1,3 +1,6 @@
+\newcommand\ghpath{/red1/Gloomhaven/Scenario-Book/Monsters/crushed}
+\newcommand\fhpath{/red1/frosthaven/images/monster-stat-cards/frosthaven}
+
 \documentclass{article}
 \pagestyle{empty}
 \usepackage{suffix}
@@ -69,7 +72,7 @@
   \ifx!#1!
     \anonymous
   \else  
-    \includegraphics[height=0.80\boxh]{/red1/Gloomhaven/Scenario-Book/Monsters/crushed/Horz-#1.png}%
+    \includegraphics[height=0.80\boxh]{\ghpath/Horz-#1.png}%
   \endgraf
   \fi
 
@@ -96,7 +99,7 @@
         ++(-120:60) -- ++(-180:60) -- cycle;
         \node[anchor=west,inner sep=0] (image) at (0,0)
              {\includegraphics*[scale=0.45,angle=90,viewport={140 140 260 260}]
-             {/red1/frosthaven/images/monster-stat-cards/frosthaven/fh-#1-0.png}};
+             {\fhpath/fh-#1-0.png}};
         \end{scope}
         \draw[line width=3pt,color=red!80!black] (0,0) -- ++(60:60) -- ++(0:60) -- ++(-60:60) --
         ++(-120:60) -- ++(-180:60) -- cycle;
@@ -160,7 +163,7 @@
 \newcommand\after[1]{$#1+0.5$}
 
 \newcommand\cutline{%
-  \draw [dashed,dash pattern=on 15pt off 8pt,color=white!90!black,rounded corners=6mm] (0.5,0.5) rectangle +(6,6)
+  \draw [dashed,dash pattern=on 15pt off 8pt,color=white!80!black,rounded corners=6mm] (0.5,0.5) rectangle +(6,6)
 %  \draw [black] (0.5,0.5) rectangle +(6,6)
 }
 
@@ -261,9 +264,9 @@
 
 \monster(1,5.5)[Lurker]{Lurker Soldier};
 \monster*(1,3.5)[lurker-mindsnipper]{Lurker Mindsnipper};
-\monster*(1,1.5)[lurker-clawcrusher]{Lurker Clawcrusher};
+\monster*(1,1.5)[lurker-wavethrower]{Lurker Wavethrower};
 
-\monster*(2,5)[lurker-wavethrower]{Lurker Wavethrower};
+\monster*(2,5)[lurker-clawcrusher]{Lurker Clawcrusher};
 \monster*(2,3.05)[lightning-eel]{Lightning Eel};
 \monster*(2,2.05)[piranha-pig]{Piranha Pig};
 \monster(2,1)[Deep-Terror]{Deep Terror};
