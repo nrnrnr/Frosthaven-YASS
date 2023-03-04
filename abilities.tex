@@ -1,0 +1,33 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage{array}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{calc}
+
+\newcommand\pirata{\relax}
+
+\newcommand\icon[1]{\raisebox{0.6ex-0.5\height}{\includegraphics[width=1em]{symbols/#1.pdf}}}
+
+\newcommand\consume[1]{\icon{consume}\icon{#1}$\rightarrow$}
+
+\newenvironment{enemy}[1]
+  {\tabular{>{\vrule width 0pt height 8pt depth 5pt}rp{3.5cm}rrcp{3.7cm}}
+   \multicolumn{6}{l}{\pirata\large#1}\\
+   \multicolumn1{l}{\rlap{\emph{Init.}}}& \emph{Name} & \emph{M} & \emph{A} & \emph{Rg}
+   & \emph{Other} \\
+  }
+  {\crcr\endtabular\par}
+
+\begin{document}
+\begin{enemy}{Lightning Eel}
+35& Calculated Strike& $-1$& $+1$& --- & \icon{light} \\
+67& Paralyzing Bite& $-1$& $+0$& --- & \consume{light} ($+1$\icon{attack},\icon{stun}) \\
+12& Leaping Dive& $+2$\rlap{\icon{jump}}& $-1$ & --- &\icon{light}\\
+20& Nothing Special& $+0$ & $+0$ & --- & \icon{light} \\
+05& Hasty Assault & $+1$ & $-1$ & --- & --- \\
+16& Electrical Pulse & $-1$ & $-1$ & \icon{range}$2$ & \icon{light} \\
+82& Shocking Voltage& $-1$ & $-1$ & --- & \consume{light}\icon{stun}\\
+09& \small Thrashing in the Water& ? & ? & ? & ? \\
+\end{enemy}
+\end{document}
