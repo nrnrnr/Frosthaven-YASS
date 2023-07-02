@@ -17,18 +17,18 @@
   \raisebox{0.6ex-0.5\height}
            {\includegraphics[width=1.4em]{symbols/#1.pdf}}}
 
-\newcommand\img[1]{%
+\newcommand\img[2][2.4ex]{%
   \raisebox{0.6ex-0.5\height}
-           {\includegraphics[height=2.4ex]{#1}}}
+           {\includegraphics[height=#1]{#2}}}
 
 \newcommand\wh{/red1/Gloomhaven/worldhaven/images}
 \newcommand\fh{\wh/art/frosthaven}
-\newcommand\cond[1]{\img{\fh/icons/conditions/fh-#1-color-icon.png}}
+\newcommand\cond[1]{\img[3.0ex]{\fh/icons/conditions/fh-#1-color-icon.png}}
 \newcommand\consume[1]{\img{\fh/icons/elements/fh-#1-consume-color-icon.png}:}
 \newcommand\eatany{\eat{wild}}
 \newcommand\gen[1]{% general
   \img{\fh/icons/general/fh-#1-bw-icon.png}}
-\newcommand\elem[1]{\img{\fh/icons/elements/fh-#1-color-icon.png}}
+\newcommand\elem[1]{\img[3.2ex]{\fh/icons/elements/fh-#1-color-icon.png}}
 \newcommand\monster[1]{%
   \raisebox{0.6ex+\depth-0.5\totalheight}{%
       \begin{tikzpicture}[x=0.18pt,y=0.18pt]
@@ -54,94 +54,55 @@
   \docsvlist{#2}}
 
 \bulkdef\gen{attack,jump,range,move,shield,loot,retaliate,teleport,xp,heal,target,damage}  
-\bulkdef\cond{push,pull,muddle,bane,poison,wound,invisible,immobilize,disarm,curse,stun,strengthen,pierce}
+\bulkdef\cond{push,pull,muddle,bane,poison,wound,invisible,immobilize,disarm,curse,stun,strengthen,pierce,brittle}
 \newcommand\eat{\consume}
 
 \bulkdef\icon{shuffle}
 
+\let\shuffleicon=\shuffle
+\def\shuffle{\hfill\shuffleicon\mbox{\hskip 0.5em}\parfillskip=0pt}
 
 \parskip=1.5\baselineskip
+%\parskip=0.5\baselineskip
+
+\newcommand\legible{\sffamily\large\bfseries}
+
+\newcommand\blank{\leavevmode\vrule height 0pt depth 0.4pt width 1em }
 
 \newenvironment{enemy}[1]
-  {\tabular{|>{\vrule width 0pt height 8pt depth 5pt\bfseries}r>{\tower\large}p{3.5cm}rr@{\hskip3pt}cp{3.7cm}@{}|}
+  {\tabular{|>{\vrule width 0pt height 8pt depth 5pt\bfseries}r>{\tower\large}p{3.5cm}>{\legible}r>{\legible}r@{\hskip5pt}>{\legible}l>{\legible\raggedright\arraybackslash}p{5.7cm}@{}|}
    \hline
    &\multicolumn{5}{l|}{\pirata\Large\vrule width 0pt height 2.8ex #1}\\[3pt]
    \multicolumn1{|l}{\rlap{\emph{Init.}}}& \rmfamily\emph{Name} & \gen{move} & \gen{attack} & 
-   & \emph{Other} \\
+   & \rmfamily\mdseries\emph{Other} \\
   }
   {\crcr\hline\endtabular\par}
 
-\newcommand\m[1]{\(-#1\)}
+\newcommand\m[1]{{--}\hskip1.5pt#1}
+
+\newcommand\display[1]{%
+  \def\do##1{\input{dossiers/##1.tex}}%
+  \docsvlist{#1}}
+
 
 \begin{document}
-\begin{enemy}{Lightning Eel \monster{lightning-eel}}
-05& Hasty Assault & $+1$ & $-1$ & --- & --- \\
-09& \normalsize Thrashing in the Water& ? & ? & ? & ? \\
-12& Leaping Dive& $+2$\rlap{\gen{jump}}& $-1$ & --- &\icon{light}\\
-16& Electrical Pulse & $-1$ & $-1$ & \gen{range}$2$ & \icon{light} \\
-20& Nothing Special& $+0$ & $+0$ & --- & \icon{light} \\
-35& Calculated Strike& $-1$& $+1$& --- & \icon{light} \\
-67& Paralyzing Bite& $-1$& $+0$& --- & \consume{light} ($+1$\icon{attack},\cond{stun}) \\
-82& Shocking Voltage& $-1$ & $-1$ & --- & \consume{light}\icon{stun}\\
-\end{enemy}
 
-\begin{enemy}{Chaos Demon \monster{chaos-demon}}
-01& Heat Blast & +1 & \m1 & \range2 & \eat{fire}\wound\\
-14& Chilling Breath & \m1 & +0 & --- & AOE; \eat{ice}\retaliate2\\
-20& Whirlwind& +0 & \m1 & \range2 & AOE, \consume{air}\shield2\\
-42& White Claws & +0 & +0 & --- & Advantage; \eat{light}\heal4 self\\
-51& Black Tendrils & \m1 & +1 & --- & \eat{dark}\invisible self\\
-67& Seismic Punch & \m2 & +1 & --- & \eat{earth}AOE; \push2\\
-77& Arcane Explosion& +0 & +0 & --- & \elem{light} \elem{dark} \ice\ \elem{air} \elem{fire} \elem{earth} \shuffle\\
-98& Hungry Maw & \m1 & \m1 & --- & \eatany\bane\ \shuffle\\
-\end{enemy}
+\display{shrike-fiend}
 
-\clearpage
+\newpage
 
-\begin{enemy}{Earth Demon \monster{earth-demon}}
-40& Strong Growth&---&---&&\heal4 self, \eat{earth}\immobilize\target all\range2\\
-42& Hasty Assault& +1 &\m1&&\shuffle\\
-62& Nothing special& +0 & +0 && \earth\\
-71& Boulder Throw&---&+0&\range4&\eat{earth}+1\target\\
-79& Reckless Charge&+1&+0&& \eat{air}\m2\attack\\
-83& Calculated Strike& \m1 & +1 && \earth \\
-87& Earthen Eruption&+0&\m1&&AOE, \eatany\earth\\
-93& Ground Slam& \m1 & \m1 && \target all adjacent, \eat{earth}\push1\\
-\end{enemy}
+\display{city-guard,hound,sun-demon}
 
-\begin{enemy}{Wind Demon \monster{wind-demon}}
-02& Eye of the Storm& \m1 & \m1 & \range3 & \shield1, \eatany\air\\
-09& Into Thin Air & --- & \m1 &\range2 & \heal1self, \eat{air}\invisible self\\
-21& Tail Wind& +0 & +0 & \range3 & \pull1, \air, \shuffle\\ 
-21& Tail Wind& +0 & +0 & \range3 & \pull1, \air, \shuffle\\ 
-29& Whirlwinds & +0 &\m1&\target2\range3&\eat{air}\pull2\\
-37& Cyclone & +0 & +0&AOE&\eat{air}+1\attack,larger AOE\\
-43& Blast of Air& --- & +0 & \range4\disarm & \push1all\range1, \eat{earth}\m2\range\\
-43& Cutting Blast& \m1 & +1 &\range3 &\eat{air}\disarm\\
-\end{enemy}
+%\display{frost-demon,living-spirit,living-bones,imp}
+%\display{frozen-corpse}%,shrike-fiend}
 
-\begin{enemy}{Frost Demon \monster{frost-demon}}
-18& Gather the Frost & --- & --- & &\immobilize all\range2; \eat{frost}\heal self\\
-18& Ice Barrier & +1 & --- && \shield2, \eat{fire}\damage1 self\\
-38& Hasty Assault & +1 & \m1 &&\\
-58& Frozen Shards & \m1 & +0 &\range2&\eat{frost}:+2\attack, +1\range \\
-58& Chilled to the Bone & \m1 & \m1&\pierce3; \eatany\frost& \\
-58& Nothing Special & +0 & +0&& \\
-78& Cold Claws & \m1 & +0 & AOE & \frost \\
-78& Cold Claws & \m1 & +0 & AOE & \frost \\
-\end{enemy}
+%\display{algox-snowspeaker,algox-guard}
+%\display{piranha-pig,abael-herder,lightning-eel}
+%\display{algox-icespeaker,algox-archer}
 
 
-\begin{enemy}{Imp \monster{snow-imp} \monster{forest-imp} \monster{black-imp}}
-05& Phase Out & --- & --- & & \shield 5, \heal1 self, \wild\\
-24& Tip the Scales & --- & --- && \strengthen\target all,\range2; \muddle\target all,b\range2\\
-37& Nothing Special  & +0 & +0 &\range3& \\
-37& Nothing Special  & +0 & +0 &\range3& \\
-42& Restoration & +1 & --- && \heal2\range3 \\
-43& Dark Charm & +0 & \m1 & \range3,\curse & \eatany+1\target\hfill  \shuffle\mbox{~}\\
-43& Rotten Sting& +0 & \m1 & \range3\poison & \eatany+1\target\hfill \shuffle\mbox{~}\\
-76& Calculated Strike & \m1 & +1 & \range3 & \\
-\end{enemy}
+
+
 
 \end{document}
 
