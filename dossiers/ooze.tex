@@ -1,10 +1,10 @@
 \begin{enemy}{Ooze \monster{ooze}}
 36& Hasty Assault&+1&\m1&\range3&\earth\\
 57& Nothing Special&+0&+0&\range3&\\
-59& Toxic Explosion&---&+0$\target2,\range3,\poison&\eat{earth}+1\target\\
+59& Toxic Explosion&---&+0&\target2,\range3,\poison&\eat{earth}+1\target\\
 66& Calculated Strike&\m1&+1&\range4&\dark\\
 66& Feed&\m1&---&&\loot1;\heal2self(\eat{dark}+1\heal)\\
-85& Plasma Ward&---&\multicolumn3{l}{\push1\target all,\range1,\poison;\attack+1\range2}\\
+85& Plasma Ward&---&---&\multicolumn2{l|}{\bfseries\push1\target all,\range1,\poison;\attack+1\range2}\\
 94& Split&---&---&&Suffer \damage2;summon\shuffle\\
 94& Split&---&---&&Suffer \damage2;summon\shuffle\\
 \end{enemy}
